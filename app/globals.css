@@ -22,8 +22,10 @@ body {
 .navbar {
   position: fixed;
   width: 100vw;
-  background-color: var(--foreground-rgb);
-  opacity: 1;
+  background: rgba(24, 26, 30, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(24, 26, 30, 0.37);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   z-index: 9999;
 }
 
@@ -56,8 +58,8 @@ body {
 }
 
 .forecast {
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 16px;
+  line-height: 22px;
   font-weight: 400;
   background-color: rgb(255, 255, 0);
   border-radius: 32px;
@@ -113,10 +115,7 @@ body {
 /* this is where you put 24 hour forecast */
 
 .we-data {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 40px 24px 20px;
+  margin-top: 35px;
 }
 
 .temp-det {
@@ -126,9 +125,10 @@ body {
   justify-content: center;
   color: black;
   background-color: white;
-  width: 140px;
-  height: 140px;
   border-radius: 50%;
+  width: 152px;
+  height: 150px;
+  margin: 20px auto;
 }
 
 .temp-det-one {
@@ -143,6 +143,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  margin-top: 4px;
 }
 
 .temp-l-h {
@@ -163,7 +164,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .aqi,
@@ -176,10 +177,44 @@ body {
 }
 
 .aqi {
-  background-color: rgb(58, 58, 58);
+  background-color: rgb(43, 43, 43);
 }
 
 .uvi {
   color: black;
   background-color: rgb(255, 255, 0);
+}
+
+.inside-data {
+  background-color: rgb(43, 43, 43);
+  border-radius: 20px;
+  height: 140px;
+  padding: 10px;
+}
+
+.transparent {
+  background-color: rgb(var(--foreground-rgb));
+}
+
+.feels-like-det {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  background-color: rgb(255, 255, 0);
+  border-radius: 50%;
+  width: 142px;
+  height: 138px;
+  margin: 0px auto;
+}
+
+.feels-like-det-one {
+  flex: 0 0 25%;
+}
+
+.inside-data-text {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 300;
 }
