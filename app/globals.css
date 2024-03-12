@@ -3,55 +3,183 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --foreground-rgb: 24, 26, 30;
+  --background-start-rgb: 24, 26, 30;
+  --background-end-rgb: 24, 26, 30;
 }
 
 body {
-  /* color: rgb(var(--foreground-rgb));
+  color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb)); */
+    rgb(var(--background-start-rgb));
+  color: white;
 }
 
 .navbar {
   position: fixed;
-  top: 8px;
   width: 100vw;
+  background-color: var(--foreground-rgb);
+  opacity: 1;
   z-index: 9999;
 }
 
-.logo {
-  width: 142px;
-  max-width: 152px;
+.nav-loc {
+  width: 35px;
+  height: 35px;
 }
 
-.contact-navbar {
-  width: 175px;
-}
-
-.contact-inside {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 22px;
-  padding: 6px 12px;
-  border-radius: 50px;
+.cur-loc {
   color: white;
-  background-color: black;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
 }
 
-.character-image {
-  height: 200px;
+.nav-settings {
+  width: 35px;
+  height: 35px;
+}
+
+.hero {
+  margin-top: 76px;
+}
+
+.forecast-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 25px;
+}
+
+.forecast {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 400;
+  background-color: rgb(255, 255, 0);
+  border-radius: 32px;
+  padding: 5px 14px;
+  width: min-content;
+}
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(234, 234, 154, 0.12) 38%,
+    rgba(24, 26, 30, 0.2) 70%
+  );
+  border-radius: 100%;
+  padding: 50px 86px 74px;
+  margin-top: -48px;
+}
+
+.weather-main-icon {
+  max-width: 100%;
+  height: auto;
+}
+
+.curr-temp {
+  display: flex;
+  flex-direction: column;
+  margin-top: -20px;
+}
+
+.big-temp {
+  color: white;
+  font-size: 106px;
+  line-height: 128px;
+  font-weight: 600;
+  text-align: center;
+  margin-left: 12px;
+  margin-top: -62px;
+}
+
+.degree {
+  font-size: 36px;
+  top: -66px;
+}
+
+.we-stat {
+  font-size: 26px;
+  line-height: 32px;
+  text-align: center;
+}
+
+/* this is where you put 24 hour forecast */
+
+.we-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 40px 24px 20px;
+}
+
+.temp-det {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  background-color: white;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+}
+
+.temp-det-one {
+  flex: 0 0 60%;
+}
+
+.temp-det-temp {
+  font-size: 42px;
+  line-height: 38px;
+  font-weight: 200;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.temp-l-h {
+  flex: 0 0 40%;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.temp-low,
+.temp-high {
+  font-size: 12px;
+  padding: 0 5px;
+}
+
+.aqi-uvi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aqi,
+.uvi {
+  width: 160px;
+  height: 60px;
+  border-radius: 50px;
+  padding: 6px 20px;
+  font-size: 14px;
+}
+
+.aqi {
+  background-color: rgb(58, 58, 58);
+}
+
+.uvi {
+  color: black;
+  background-color: rgb(255, 255, 0);
 }
