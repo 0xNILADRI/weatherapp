@@ -40,6 +40,7 @@ body {
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
+  text-transform: capitalize;
 }
 
 .nav-settings {
@@ -111,9 +112,8 @@ body {
   font-size: 26px;
   line-height: 32px;
   text-align: center;
+  text-transform: capitalize;
 }
-
-/* this is where you put 24 hour forecast */
 
 .we-data {
   margin-top: 12px;
@@ -345,8 +345,8 @@ body {
 }
 
 .inner-circle {
-  width: 68%;
-  height: 68%;
+  /* width: 20%;
+  height: 20%; */
   background-color: rgb(255, 255, 0);
   border-radius: 50%;
   position: absolute;
@@ -375,4 +375,18 @@ body {
   flex-direction: row;
   justify-content: space-between;
   width: 66px;
+}
+
+.location-box {
+  background-color: rgb(21, 21, 21);
+  border-radius: 24px;
+}
+
+#name {
+  border-radius: 10px;
+}
+
+.loc-button {
+  border-radius: 10px;
+  background-color: rgb(38, 38, 38);
 }

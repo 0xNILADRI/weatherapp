@@ -11,15 +11,17 @@ export const fetchWeather = async (city: string) => {
       `${BASE_URL}?q=${city}&appid=${API_KEY}&units=metric`
     );
 
+    const lon = response.data.coord.lon;
+    const lat = response.data.coord.lat;
+
     const forecast = await axios.get(
-      `${FORECAST_URL}?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&appid=${API_KEY}&units=metric`
+      `${FORECAST_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
     );
 
     const aqi = await axios.get(
-      `${AQI_URL}?lat=${response.data.coord.lat}&lon=${response.data.coord.lon}&appid=${API_KEY}&units=metric`
+      `${AQI_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
     );
 
-    console.log(forecast.data);
     return response.data;
   } catch (error) {
     console.error("Failed to fetch weather data: ");
