@@ -198,13 +198,11 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
     return `${hours}:${minutes}`;
   }
 
-  console.log(weatherData);
-
   return (
     <>
       {weatherData ? (
         <div>
-          <div className="hero max-w-7xl">
+          <div className="hero max-w-4xl">
             <div className="forecast-container">
               <div className="forecast text-black">Forecast</div>
             </div>
@@ -276,7 +274,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
             <hr className="h-px bg-gray-800 border-0 m-4" />
 
             <div className=" flex flex-wrap">
-              <div className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pt-4 pb-2 pl-4 pr-2 in-data">
+              <div className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pt-4 pb-2 pl-4 pr-2 in-data air-quality-con">
                 <div className="inside-data text-left">
                   <p className="inside-data-text">
                     AIR QUALITY <br />
@@ -293,7 +291,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                   </p>
                 </div>
               </div>
-              <div className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pt-4 pb-2 pl-2 pr-4 in-data">
+              <div className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pt-4 pb-2 pl-2 pr-4 in-data humidity">
                 <div className="inside-data text-left">
                   <p className="inside-data-text">HUMIDITY</p>
                   <div className="outer-circle">
@@ -310,7 +308,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                   </p>
                 </div>
               </div>
-              <div className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pt-2 pb-2 pl-4 pr-2 in-data">
+              <div className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pt-2 pb-2 pl-4 pr-2 in-data wind-speed">
                 <div className="inside-data text-left">
                   <p className="inside-data-text">WIND SPEED</p>
                   <Image
@@ -323,7 +321,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                   </p>
                 </div>
               </div>
-              <div className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pt-2 pb-2 pl-2 pr-4 in-data">
+              <div className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pt-2 pb-2 pl-2 pr-4 in-data pressure">
                 <div className="inside-data text-left">
                   <p className="inside-data-text">PRESSURE</p>
                   <Image
@@ -336,7 +334,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                   </p>
                 </div>
               </div>
-              <div className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pt-2 pb-4 pl-4 pr-2 in-data">
+              <div className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pt-2 pb-4 pl-4 pr-2 in-data sunset">
                 <div className="inside-data text-left">
                   <p className="inside-data-text">SUNSET</p>
                   <Image

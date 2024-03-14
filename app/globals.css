@@ -325,6 +325,7 @@ body {
 .inside-data-stat-image {
   width: 132px;
   height: 130px;
+  margin: 0 auto;
 }
 
 .inside-data-stat-image-sm {
@@ -338,14 +339,14 @@ body {
 }
 
 .wind-speed {
-  width: 102px;
+  width: 114px;
   height: 100px;
   margin: 14px auto;
 }
 
 .uv-index {
   width: 109px;
-  height: 99px;
+  height: 114px;
   margin: 6px auto;
   transform: translateY(5px);
 }
@@ -414,4 +415,64 @@ body {
   border-radius: 10px;
   left: 100%;
   background-color: rgb(38, 38, 38);
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .image-container {
+    width: 50%;
+    padding: 81px 18px 74px;
+  }
+  .curr-temp {
+    margin-top: -318px;
+    margin-left: 302px;
+  }
+  .we-data {
+    width: 345px;
+    margin-left: 372px;
+  }
+  .weather-card {
+    width: 90vw;
+  }
+  .air-quality-con {
+    padding-left: 0.5rem;
+  }
+  .wind-speed {
+    padding-left: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .humidity {
+    padding-right: 0.5rem;
+  }
+
+  .pressure {
+    padding-right: 0.5rem;
+  }
+
+  .sunset {
+    padding-left: 0.5rem;
+  }
+}
+
+@media (min-width: 800px) {
+  .we-data {
+    margin-left: 430px;
+  }
+  .curr-temp {
+    margin-left: 378px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .curr-temp {
+    margin-left: 527px;
+    margin-top: -346px;
+  }
+  .we-data {
+    margin-left: 550px;
+  }
+  .weather-card {
+    width: 100%;
+  }
 }

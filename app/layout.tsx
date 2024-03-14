@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FLDSMDFR : Weather App",
+  title: "Current$ : Get live weather updates",
   description:
     "A simple and elegant app to check current weather all across the globe.",
 };

@@ -33,7 +33,7 @@ const Navbar: React.FC<NavbarProps> = ({ defaultCity, setCity }) => {
 
   return (
     <>
-      <nav className="flex max-w-6xl left-0 right-0 flex-row items-center justify-between p-4 navbar">
+      <nav className="flex max-w-4xl left-0 right-0 flex-row items-center justify-between p-4 navbar">
         <Dialog>
           <DialogTrigger asChild>
             <Button className="pl-0">

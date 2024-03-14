@@ -2,7 +2,7 @@ import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
 
 function footer() {
   return (
-    <div className="footer max-w-7xl">
+    <div className="footer max-w-4xl">
       <div className="niladri">
         Crafted by <span className=" text-yellow-400">Niladri Ghosh</span>
       </div>
