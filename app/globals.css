@@ -338,8 +338,8 @@ body {
   transform: translateY(-2px);
 }
 
-.wind-speed {
-  width: 114px;
+.wind-speed-img {
+  width: 108px;
   height: 100px;
   margin: 14px auto;
 }

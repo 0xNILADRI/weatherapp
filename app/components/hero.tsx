@@ -314,7 +314,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                   <Image
                     src={WindSpeed}
                     alt="wind speed logo"
-                    className="inside-data-stat-image wind-speed"
+                    className="inside-data-stat-image wind-speed-img"
                   ></Image>
                   <p className="inside-data-stat text-left">
                     <b>{weatherData[0].wind.speed} KM/PH</b>
