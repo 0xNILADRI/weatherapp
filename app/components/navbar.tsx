@@ -1,21 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { fetchWeather } from "@/utils/fetchWeather";
-import Hero from "@/app/components/hero";
 
 import { MdMyLocation } from "react-icons/md";
 import { MdOutlineSettings } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 
 interface NavbarProps {
@@ -38,42 +34,37 @@ const Navbar: React.FC<NavbarProps> = ({ defaultCity, setCity }) => {
   return (
     <>
       <nav className="flex max-w-6xl left-0 right-0 flex-row items-center justify-between p-4 navbar">
-        <Drawer>
-          <DrawerTrigger asChild>
-            <Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="pl-0">
               <MdMyLocation color="#FFF" className="nav-loc" />
             </Button>
-          </DrawerTrigger>
-          <DrawerContent>
-            <div className="mx-auto w-full max-w-sm">
-              <DrawerHeader>
-                <DrawerTitle>Change Location</DrawerTitle>
-              </DrawerHeader>
-              <form onSubmit={handleSubmit}>
-                <div className="grid gap-4 py-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Input
-                      id="name"
-                      type="text"
-                      className="col-span-4"
-                      placeholder="enter city name"
-                      value={inputCity}
-                      onChange={handleInputChange}
-                    />
-                  </div>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[425px] location-box">
+            <DialogHeader>
+              <DialogTitle>Edit to change location</DialogTitle>
+            </DialogHeader>
+            <form onSubmit={handleSubmit}>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Input
+                    id="name"
+                    type="text"
+                    className="col-span-4"
+                    placeholder="enter city name"
+                    value={inputCity}
+                    onChange={handleInputChange}
+                  />
                 </div>
-                <DrawerFooter>
-                  <DrawerClose asChild>
-                    <Button className="loc-button" type="submit">
-                      Submit
-                    </Button>
-                  </DrawerClose>
-                </DrawerFooter>
-              </form>
-            </div>
-          </DrawerContent>
-        </Drawer>
-
+              </div>
+              <DialogTrigger>
+                <button type="submit" className="loc-button ">
+                  Submit
+                </button>
+              </DialogTrigger>
+            </form>
+          </DialogContent>
+        </Dialog>
         <div className="cur-loc opacity-90">{defaultCity}</div>
         <MdOutlineSettings color="#FFF" className="nav-settings" />
       </nav>

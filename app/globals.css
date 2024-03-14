@@ -19,6 +19,28 @@ body {
   color: white;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #303030 #181a1e;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #181a1e;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #303030;
+  border-radius: 10px;
+  border: 3px solid #181a1e;
+}
+
 .navbar {
   position: fixed;
   width: 100vw;
@@ -46,6 +68,7 @@ body {
 .nav-settings {
   width: 35px;
   height: 35px;
+  opacity: 0;
 }
 
 .hero {
@@ -57,6 +80,7 @@ body {
   display: flex;
   justify-content: flex-end;
   padding-right: 25px;
+  display: none;
 }
 
 .forecast {
@@ -304,13 +328,13 @@ body {
 }
 
 .inside-data-stat-image-sm {
-  width: 126px;
+  width: 118px;
   height: 108px;
 }
 
 .air-quality {
   margin-left: 14px;
-  transform: translateY(8px);
+  transform: translateY(-2px);
 }
 
 .wind-speed {
@@ -327,8 +351,8 @@ body {
 }
 
 .inside-data-stat {
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 16px;
+  line-height: 20px;
   font-weight: 500;
 }
 
@@ -388,5 +412,6 @@ body {
 
 .loc-button {
   border-radius: 10px;
+  left: 100%;
   background-color: rgb(38, 38, 38);
 }

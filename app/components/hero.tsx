@@ -20,11 +20,25 @@ import FewCloudsNight from "@/public/weather-logo/few-clouds-night.png";
 import Sunset from "@/public/weather-icons/sunset.png";
 import WindSpeed from "@/public/weather-icons/wind-speed.png";
 import AirQuality from "@/public/weather-icons/air-quality.png";
-import UvIndex from "@/public/weather-icons/uv-index.png";
+import Pressure from "@/public/weather-icons/pressure.png";
 
+import { WiDaySunny } from "react-icons/wi";
+import { WiNightClear } from "react-icons/wi";
+import { WiDayCloudy } from "react-icons/wi";
+import { WiNightCloudy } from "react-icons/wi";
+import { WiDayCloudyGusts } from "react-icons/wi";
+import { WiCloudy } from "react-icons/wi";
+import { WiDayShowers } from "react-icons/wi";
+import { WiNightShowers } from "react-icons/wi";
+import { WiDayRain } from "react-icons/wi";
+import { WiNightRain } from "react-icons/wi";
+import { WiDayThunderstorm } from "react-icons/wi";
 import { WiNightThunderstorm } from "react-icons/wi";
+import { WiSnow } from "react-icons/wi";
+import { WiDayFog } from "react-icons/wi";
+import { WiNightFog } from "react-icons/wi";
 
-const WeatherIcon = ({ iconCode }: { iconCode: string }) => {
+const WeatherLogo = ({ iconCode }: { iconCode: string }) => {
   let imagePath;
 
   switch (iconCode) {
@@ -85,17 +99,85 @@ const WeatherIcon = ({ iconCode }: { iconCode: string }) => {
   );
 };
 
+const aqiStatus = (aqi_val: number) => {
+  let aqiStat;
+
+  switch (aqi_val) {
+    case 1:
+      aqiStat = "Good";
+      break;
+    case 2:
+      aqiStat = "Fair";
+      break;
+    case 3:
+      aqiStat = "Moderate";
+      break;
+    case 4:
+      aqiStat = "Poor";
+      break;
+    case 5:
+      aqiStat = "Very Poor";
+      break;
+    default:
+      aqiStat = "unknown";
+      break;
+  }
+
+  return aqiStat;
+};
+
+const WeatherIcon = ({ iconCode }: { iconCode: string }) => {
+  let imagePath;
+
+  switch (iconCode) {
+    case "01d":
+      return <WiDaySunny color="yellow" className="weather-item-icon" />;
+    case "01n":
+      return <WiNightClear color="yellow" className="weather-item-icon" />;
+    case "02d":
+      return <WiDayCloudy color="yellow" className="weather-item-icon" />;
+    case "02n":
+      return <WiNightCloudy color="yellow" className="weather-item-icon" />;
+    case "03d":
+    case "03n":
+      return <WiDayCloudyGusts color="yellow" className="weather-item-icon" />;
+    case "04d":
+    case "04n":
+      return <WiCloudy color="yellow" className="weather-item-icon" />;
+    case "09d":
+      return <WiDayShowers color="yellow" className="weather-item-icon" />;
+    case "09n":
+      return <WiNightShowers color="yellow" className="weather-item-icon" />;
+    case "10d":
+      return <WiDayRain color="yellow" className="weather-item-icon" />;
+    case "10n":
+      return <WiNightRain color="yellow" className="weather-item-icon" />;
+    case "11d":
+      return <WiDayThunderstorm color="yellow" className="weather-item-icon" />;
+    case "11n":
+      return (
+        <WiNightThunderstorm color="yellow" className="weather-item-icon" />
+      );
+    case "13d":
+    case "13n":
+      return <WiSnow color="yellow" className="weather-item-icon" />;
+    case "50d":
+      return <WiDayFog color="yellow" className="weather-item-icon" />;
+    case "50n":
+      return <WiNightFog color="yellow" className="weather-item-icon" />;
+    default:
+      return (
+        <WiNightThunderstorm color="yellow" className="weather-item-icon" />
+      );
+  }
+};
+
 interface HeroProps {
   defaultCity: string;
 }
 
 const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
   const [weatherData, setWeatherData] = useState<any>(null);
-  const [defaultHover, setDefaultHover] = useState(true);
-
-  const handleHover = () => {
-    setDefaultHover(false);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -116,6 +198,8 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
     return `${hours}:${minutes}`;
   }
 
+  console.log(weatherData);
+
   return (
     <>
       {weatherData ? (
@@ -126,22 +210,16 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
             </div>
 
             <div className="image-container">
-              <WeatherIcon iconCode={weatherData.weather[0].icon} />
-              {/* <Image
-                src={Thunderstorm}
-                alt="Weather Icon on Home Page"
-                className="weather-main-icon"
-                priority={true}
-              ></Image> */}
+              <WeatherLogo iconCode={weatherData[0].weather[0].icon} />
             </div>
             <div className="curr-temp">
               <span className="big-temp">
-                {parseInt(weatherData.main.temp)}
+                {parseInt(weatherData[0].main.temp)}
                 <sup className="degree text-stone-400">°</sup>
               </span>
 
               <p className="we-stat text-stone-400">
-                {weatherData.weather[0].description}
+                {weatherData[0].weather[0].description}
               </p>
             </div>
 
@@ -149,14 +227,14 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
               <div className="w-1/2 ">
                 <div className="p-4 temp-det">
                   <div className="temp-det-temp temp-det-one">
-                    {parseInt(weatherData.main.temp)}°
+                    {parseInt(weatherData[0].main.temp)}°
                   </div>
                   <div className="temp-l-h">
                     <p className="temp-high">
-                      H: {parseInt(weatherData.main.temp_max)}° C
+                      H: {parseInt(weatherData[0].main.temp_max)}° C
                     </p>
                     <p className="temp-low">
-                      L: {parseInt(weatherData.main.temp_min)}° C
+                      L: {parseInt(weatherData[0].main.temp_min)}° C
                     </p>
                   </div>
                 </div>
@@ -164,104 +242,35 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
 
               <div className="we-deta-one aqi-uvi w-1/2 p-4 ">
                 <div className="aqi">
-                  AIR QUALITY 10 <br /> GOOD
+                  AIR QUALITY {weatherData[2].list[0].main.aqi}0 <br />{" "}
+                  {aqiStatus(weatherData[2].list[0].main.aqi)}
                 </div>
                 <div className="uvi">
-                  UV INDEX 04 <br /> HIGH
+                  VISIBILITY <br /> {weatherData[0].visibility} Meters
                 </div>
               </div>
             </div>
 
             <hr className="h-px bg-gray-800 border-0 m-4" />
 
-            <div className="weather-card  p-2">
-              <div className="weather-item p-2 one">
-                <div className="weather-card-temp text-center">25°</div>
-                <div className="weather-card-img">
-                  <WiNightThunderstorm
-                    color="yellow"
-                    className="weather-item-icon"
-                  />
-                </div>
-                <div className="weather-card-time text-center">12:00</div>
-              </div>
-              <div
-                className={
-                  defaultHover
-                    ? "weather-item p-2 two default"
-                    : "weather-item p-2 two"
-                }
-                onMouseOver={handleHover}
-              >
-                <div className="weather-card-temp text-center">28°</div>
-                <div className="weather-card-img">
-                  <WiNightThunderstorm
-                    color="yellow"
-                    className="weather-item-icon"
-                  />
-                </div>
-                <div className="weather-card-time text-center">12:00</div>
-              </div>
-              <div className="weather-item p-2 three">
-                <div className="weather-card-temp text-center">22°</div>
-                <div className="weather-card-img">
-                  <WiNightThunderstorm
-                    color="yellow"
-                    className="weather-item-icon"
-                  />
-                </div>
-                <div className="weather-card-time text-center">12:00</div>
-              </div>
-              <div className="weather-item p-2 four">
-                <div className="weather-card-temp text-center">25°</div>
-                <div className="weather-card-img">
-                  <WiNightThunderstorm
-                    color="yellow"
-                    className="weather-item-icon"
-                  />
-                </div>
-                <div className="weather-card-time text-center">12:00</div>
-              </div>
-              <div className="weather-item p-2 five">
-                <div className="weather-card-temp text-center">25°</div>
-                <div className="weather-card-img">
-                  <WiNightThunderstorm
-                    color="yellow"
-                    className="weather-item-icon"
-                  />
-                </div>
-                <div className="weather-card-time text-center">12:00</div>
-              </div>
-              <div className="weather-item p-2 six">
-                <div className="weather-card-temp text-center">25°</div>
-                <div className="weather-card-img">
-                  <WiNightThunderstorm
-                    color="yellow"
-                    className="weather-item-icon"
-                  />
-                </div>
-                <div className="weather-card-time text-center">12:00</div>
-              </div>
-              <div className="weather-item p-2 seven">
-                <div className="weather-card-temp text-center">25°</div>
-                <div className="weather-card-img">
-                  <WiNightThunderstorm
-                    color="yellow"
-                    className="weather-item-icon"
-                  />
-                </div>
-                <div className="weather-card-time text-center">12:00</div>
-              </div>
-              <div className="weather-item p-2 eight">
-                <div className="weather-card-temp text-center">25°</div>
-                <div className="weather-card-img">
-                  <WiNightThunderstorm
-                    color="yellow"
-                    className="weather-item-icon"
-                  />
-                </div>
-                <div className="weather-card-time text-center">12:00</div>
-              </div>
+            <div className="weather-card p-2">
+              {weatherData[1].list
+                .slice(0, 12)
+                .map((element: any, index: any) => (
+                  <div key={index} className="weather-item p-2 one ">
+                    <div className="weather-card-temp text-center">
+                      {parseInt(element.main.temp)}°
+                    </div>
+                    <div className="weather-card-img">
+                      <WeatherIcon
+                        iconCode={element.weather[0].icon}
+                      ></WeatherIcon>
+                    </div>
+                    <div className="weather-card-time text-center">
+                      {element.dt_txt.split(" ")[1].substring(0, 5)}
+                    </div>
+                  </div>
+                ))}
             </div>
 
             <hr className="h-px bg-gray-800 border-0 m-4" />
@@ -271,7 +280,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                 <div className="inside-data text-left">
                   <p className="inside-data-text">
                     AIR QUALITY <br />
-                    <b>GOOD</b>
+                    <b>{aqiStatus(weatherData[2].list[0].main.aqi)}</b>
                   </p>
                   <Image
                     src={AirQuality}
@@ -280,7 +289,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                   ></Image>
                   <p className="inside-data-stat text-left">
                     {" "}
-                    <b>10</b>
+                    <b>PM 2.5: {weatherData[2].list[0].components.pm2_5}</b>
                   </p>
                 </div>
               </div>
@@ -291,13 +300,13 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                     <div
                       className="inner-circle"
                       style={{
-                        width: `${weatherData.main.humidity}%`,
-                        height: `${weatherData.main.humidity}%`,
+                        width: `${weatherData[0].main.humidity}%`,
+                        height: `${weatherData[0].main.humidity}%`,
                       }}
                     ></div>
                   </div>
                   <p className="inside-data-stat text-left">
-                    <b>{weatherData.main.humidity}%</b>
+                    <b>{weatherData[0].main.humidity}%</b>
                   </p>
                 </div>
               </div>
@@ -310,23 +319,20 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                     className="inside-data-stat-image wind-speed"
                   ></Image>
                   <p className="inside-data-stat text-left">
-                    <b>{weatherData.wind.speed} KPH</b>
+                    <b>{weatherData[0].wind.speed} KM/PH</b>
                   </p>
                 </div>
               </div>
               <div className="w-1/2 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3 pt-2 pb-2 pl-2 pr-4 in-data">
                 <div className="inside-data text-left">
-                  <p className="inside-data-text">
-                    UV INDEX <br />
-                    <b>VERY HIGH</b>
-                  </p>
+                  <p className="inside-data-text">PRESSURE</p>
                   <Image
-                    src={UvIndex}
-                    alt="uv index logo"
-                    className="inside-data-stat-image-sm uv-index"
+                    src={Pressure}
+                    alt="pressure logo"
+                    className="inside-data-stat-image uv-index"
                   ></Image>
                   <p className="inside-data-stat text-left">
-                    <b>08</b>
+                    <b>{weatherData[0].main.pressure} hPa</b>
                   </p>
                 </div>
               </div>
@@ -339,7 +345,9 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                     className="inside-data-stat-image"
                   ></Image>
                   <p className="inside-data-stat text-left">
-                    <b>{formatTime(new Date(weatherData.sys.sunset * 1000))}</b>
+                    <b>
+                      {formatTime(new Date(weatherData[0].sys.sunset * 1000))}
+                    </b>
                   </p>
                 </div>
               </div>
@@ -348,7 +356,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                   <div className="p-4 feels-like-det ">
                     <div className="feels-like temp-high">FEELS LIKE</div>
                     <div className="temp-det-temp feels-like-det-one">
-                      {parseInt(weatherData.main.feels_like)}°
+                      {parseInt(weatherData[0].main.feels_like)}°
                     </div>
                   </div>
                 </div>
