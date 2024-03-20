@@ -20,7 +20,7 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ defaultCity, setCity }) => {
-  const [inputCity, setInputCity] = useState("Bangalore");
+  const [inputCity, setInputCity] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputCity(e.target.value);
