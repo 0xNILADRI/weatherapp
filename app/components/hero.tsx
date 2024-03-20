@@ -363,7 +363,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <p className="loading-beg">Loading...</p>
       )}
     </>
   );
