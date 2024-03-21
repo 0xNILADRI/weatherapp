@@ -1,8 +1,3 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { fetchWeather } from "@/utils/fetchWeather";
-
 import Image from "next/image";
 import Thunderstorm from "@/public/weather-logo/thunderstorm.png";
 import RainDay from "@/public/weather-logo/rain-day.png";
@@ -173,25 +168,11 @@ const WeatherIcon = ({ iconCode }: { iconCode: string }) => {
 };
 
 interface HeroProps {
-  defaultCity: string;
+  // defaultCity: string;
+  dataFromParent: any;
 }
 
-const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
-  const [weatherData, setWeatherData] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchWeather(defaultCity);
-        setWeatherData(data);
-      } catch (error) {
-        console.error("Error fetching weather data:", error);
-      }
-    };
-
-    fetchData();
-  }, [defaultCity]);
-
+const Hero: React.FC<HeroProps> = ({ dataFromParent }) => {
   function formatTime(x: Date) {
     const hours = x.getHours();
     const minutes = x.getMinutes();
@@ -200,7 +181,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
 
   return (
     <>
-      {weatherData ? (
+      {dataFromParent ? (
         <div>
           <div className="hero max-w-4xl">
             <div className="forecast-container">
@@ -208,16 +189,16 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
             </div>
 
             <div className="image-container">
-              <WeatherLogo iconCode={weatherData[0].weather[0].icon} />
+              <WeatherLogo iconCode={dataFromParent[0].weather[0].icon} />
             </div>
             <div className="curr-temp">
               <span className="big-temp">
-                {parseInt(weatherData[0].main.temp)}
+                {parseInt(dataFromParent[0].main.temp)}
                 <sup className="degree text-stone-400">°</sup>
               </span>
 
               <p className="we-stat text-stone-400">
-                {weatherData[0].weather[0].description}
+                {dataFromParent[0].weather[0].description}
               </p>
             </div>
 
@@ -225,14 +206,14 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
               <div className="w-1/2 ">
                 <div className="p-4 temp-det">
                   <div className="temp-det-temp temp-det-one">
-                    {parseInt(weatherData[0].main.temp)}°
+                    {parseInt(dataFromParent[0].main.temp)}°
                   </div>
                   <div className="temp-l-h">
                     <p className="temp-high">
-                      H: {parseInt(weatherData[0].main.temp_max)}° C
+                      H: {parseInt(dataFromParent[0].main.temp_max)}° C
                     </p>
                     <p className="temp-low">
-                      L: {parseInt(weatherData[0].main.temp_min)}° C
+                      L: {parseInt(dataFromParent[0].main.temp_min)}° C
                     </p>
                   </div>
                 </div>
@@ -240,11 +221,11 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
 
               <div className="we-deta-one aqi-uvi w-1/2 p-4 ">
                 <div className="aqi">
-                  AIR QUALITY {weatherData[2].list[0].main.aqi}0 <br />{" "}
-                  {aqiStatus(weatherData[2].list[0].main.aqi)}
+                  AIR QUALITY {dataFromParent[2].list[0].main.aqi}0 <br />{" "}
+                  {aqiStatus(dataFromParent[2].list[0].main.aqi)}
                 </div>
                 <div className="uvi">
-                  VISIBILITY <br /> {weatherData[0].visibility} Meters
+                  VISIBILITY <br /> {dataFromParent[0].visibility} Meters
                 </div>
               </div>
             </div>
@@ -252,7 +233,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
             <hr className="h-px bg-gray-800 border-0 m-4" />
 
             <div className="weather-card p-2">
-              {weatherData[1].list
+              {dataFromParent[1].list
                 .slice(0, 12)
                 .map((element: any, index: any) => (
                   <div key={index} className="weather-item p-2 one ">
@@ -278,7 +259,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                 <div className="inside-data text-left">
                   <p className="inside-data-text">
                     AIR QUALITY <br />
-                    <b>{aqiStatus(weatherData[2].list[0].main.aqi)}</b>
+                    <b>{aqiStatus(dataFromParent[2].list[0].main.aqi)}</b>
                   </p>
                   <Image
                     src={AirQuality}
@@ -287,7 +268,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                   ></Image>
                   <p className="inside-data-stat text-left">
                     {" "}
-                    <b>PM 2.5: {weatherData[2].list[0].components.pm2_5}</b>
+                    <b>PM 2.5: {dataFromParent[2].list[0].components.pm2_5}</b>
                   </p>
                 </div>
               </div>
@@ -298,13 +279,13 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                     <div
                       className="inner-circle"
                       style={{
-                        width: `${weatherData[0].main.humidity}%`,
-                        height: `${weatherData[0].main.humidity}%`,
+                        width: `${dataFromParent[0].main.humidity}%`,
+                        height: `${dataFromParent[0].main.humidity}%`,
                       }}
                     ></div>
                   </div>
                   <p className="inside-data-stat text-left">
-                    <b>{weatherData[0].main.humidity}%</b>
+                    <b>{dataFromParent[0].main.humidity}%</b>
                   </p>
                 </div>
               </div>
@@ -317,7 +298,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                     className="inside-data-stat-image wind-speed-img"
                   ></Image>
                   <p className="inside-data-stat text-left">
-                    <b>{weatherData[0].wind.speed} KM/PH</b>
+                    <b>{dataFromParent[0].wind.speed} KM/PH</b>
                   </p>
                 </div>
               </div>
@@ -330,7 +311,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                     className="inside-data-stat-image uv-index"
                   ></Image>
                   <p className="inside-data-stat text-left">
-                    <b>{weatherData[0].main.pressure} hPa</b>
+                    <b>{dataFromParent[0].main.pressure} hPa</b>
                   </p>
                 </div>
               </div>
@@ -344,7 +325,9 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                   ></Image>
                   <p className="inside-data-stat text-left">
                     <b>
-                      {formatTime(new Date(weatherData[0].sys.sunset * 1000))}
+                      {formatTime(
+                        new Date(dataFromParent[0].sys.sunset * 1000)
+                      )}
                     </b>
                   </p>
                 </div>
@@ -354,7 +337,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
                   <div className="p-4 feels-like-det ">
                     <div className="feels-like temp-high">FEELS LIKE</div>
                     <div className="temp-det-temp feels-like-det-one">
-                      {parseInt(weatherData[0].main.feels_like)}°
+                      {parseInt(dataFromParent[0].main.feels_like)}°
                     </div>
                   </div>
                 </div>
@@ -363,7 +346,7 @@ const Hero: React.FC<HeroProps> = ({ defaultCity }) => {
           </div>
         </div>
       ) : (
-        <p className="loading-beg">Loading...</p>
+        <></>
       )}
     </>
   );

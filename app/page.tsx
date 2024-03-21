@@ -1,32 +1,22 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Navbar from "./components/navbar";
 import WeatherSection from "./components/hero";
 import Footer from "./components/footer";
 
 const Home: React.FC = () => {
-  const [city, setCity] = useState("");
+  const [weatherData, setWeatherData] = useState(null);
 
-  useEffect(() => {
-    const fetchCity = async () => {
-      try {
-        const response = await fetch("https://ipapi.co/json/");
-        const data = await response.json();
-        setCity(data.city);
-      } catch (error) {
-        console.error("Error fetching city:", error);
-      }
-    };
-
-    fetchCity();
-  }, []);
+  const receiveDataFromChild = (data: any) => {
+    setWeatherData(data);
+  };
 
   return (
     <main className="relative flex left-0 right-0 flex-col items-center ">
-      <Navbar defaultCity={city} setCity={setCity}></Navbar>
-      <WeatherSection defaultCity={city}></WeatherSection>
+      <Navbar sendDataToParent={receiveDataFromChild}></Navbar>
+      <WeatherSection dataFromParent={weatherData}></WeatherSection>
       <Footer></Footer>
     </main>
   );
