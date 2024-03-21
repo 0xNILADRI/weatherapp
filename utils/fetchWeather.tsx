@@ -3,9 +3,9 @@ import axios from "axios";
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 const FORECAST_URL = "https://api.openweathermap.org/data/2.5/forecast";
 const AQI_URL = "https://api.openweathermap.org/data/2.5/air_pollution";
-const OPENUV_URL = "https://api.openuv.io/api/v1/uv";
 const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY;
-const OPENUV_KEY = process.env.OPENUV_API_KEY;
+
+let cachedData: any = null;
 
 export const fetchWeather = async (city: string) => {
   const result = [];
@@ -28,9 +28,14 @@ export const fetchWeather = async (city: string) => {
     );
     result.push(aqi.data);
 
+    cachedData = result;
     return result;
   } catch (error) {
     console.error("Failed to fetch weather data: ");
-    return null;
+    if (cachedData) {
+      return cachedData;
+    } else {
+      return null;
+    }
   }
 };
