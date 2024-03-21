@@ -5,9 +5,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Current$ : Get live weather updates",
+  title: "Umbrella : Get live weather updates",
   description:
-    "A simple and elegant app to check current weather all across the globe.",
+    "A rudimentary, yet exquisitely crafted application, designed to provide real-time weather updates from around the world.",
 };
 
 export default function RootLayout({
