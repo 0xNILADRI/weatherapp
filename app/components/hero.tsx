@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { WeatherLogo, aqiStatus, WeatherIcon } from "@/utils/data";
+import TwentyFourHourForecast from "@/app/components/twentyFourHourForecast";
 
 import Sunset from "@/public/weather-icons/sunset.png";
 import WindSpeed from "@/public/weather-icons/wind-speed.png";
@@ -70,25 +71,9 @@ const Hero: React.FC<HeroProps> = ({ dataFromParent }) => {
 
             <hr className="h-px bg-gray-800 border-0 m-4" />
 
-            <div className="weather-card p-2">
-              {dataFromParent[1].list
-                .slice(0, 12)
-                .map((element: any, index: any) => (
-                  <div key={index} className="weather-item p-2 one ">
-                    <div className="weather-card-temp text-center">
-                      {parseInt(element.main.temp)}°
-                    </div>
-                    <div className="weather-card-img">
-                      <WeatherIcon
-                        iconCode={element.weather[0].icon}
-                      ></WeatherIcon>
-                    </div>
-                    <div className="weather-card-time text-center">
-                      {element.dt_txt.split(" ")[1].substring(0, 5)}
-                    </div>
-                  </div>
-                ))}
-            </div>
+            <TwentyFourHourForecast
+              dataParent={dataFromParent}
+            ></TwentyFourHourForecast>
 
             <hr className="h-px bg-gray-800 border-0 m-4" />
 
