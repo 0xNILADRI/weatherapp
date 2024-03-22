@@ -1,16 +1,16 @@
 import Image from "next/image";
-import Thunderstorm from "@/public/weather-logo/thunderstorm.png";
-import RainDay from "@/public/weather-logo/rain-day.png";
-import RainNight from "@/public/weather-logo/rain-night.png";
-import ShowerRain from "@/public/weather-logo/shower-rain.png";
-import ScatterClouds from "@/public/weather-logo/scatter-clouds.png";
-import Day from "@/public/weather-logo/day.png";
-import Night from "@/public/weather-logo/night.png";
-import Snowflake from "@/public/weather-logo/snowflake.png";
-import BrokenClouds from "@/public/weather-logo/broken-clouds.png";
-import Mist from "@/public/weather-logo/mist.png";
-import FewCloudsDay from "@/public/weather-logo/few-clouds-day.png";
-import FewCloudsNight from "@/public/weather-logo/few-clouds-night.png";
+import Thunderstorm from "@/public/weather-logo/thunderstorm.webp";
+import RainDay from "@/public/weather-logo/rain-day.webp";
+import RainNight from "@/public/weather-logo/rain-night.webp";
+import ShowerRain from "@/public/weather-logo/shower-rain.webp";
+import ScatterClouds from "@/public/weather-logo/scatter-clouds.webp";
+import Day from "@/public/weather-logo/day.webp";
+import Night from "@/public/weather-logo/night.webp";
+import Snowflake from "@/public/weather-logo/snowflake.webp";
+import BrokenClouds from "@/public/weather-logo/broken-clouds.webp";
+import Mist from "@/public/weather-logo/mist.webp";
+import FewCloudsDay from "@/public/weather-logo/few-clouds-day.webp";
+import FewCloudsNight from "@/public/weather-logo/few-clouds-night.webp";
 
 import { WiDaySunny } from "react-icons/wi";
 import { WiNightClear } from "react-icons/wi";
