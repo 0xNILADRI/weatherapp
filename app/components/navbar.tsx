@@ -23,7 +23,6 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ sendDataToParent }) => {
   const [inputCity, setInputCity] = useState("*");
   const inputRef = useRef<HTMLInputElement>(null);
-  const [tempValue, setTempValue] = useState("");
   const [weatherData, setWeatherData] = useState<any>(null);
 
   useEffect(() => {
@@ -47,14 +46,8 @@ const Navbar: React.FC<NavbarProps> = ({ sendDataToParent }) => {
     fetchData();
   }, [inputCity]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTempValue(e.target.value);
-    setInputCity(tempValue);
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setInputCity(tempValue);
     if (inputRef.current) {
       setInputCity(inputRef.current.value);
       inputRef.current.value = "";
